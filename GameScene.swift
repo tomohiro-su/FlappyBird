@@ -61,6 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         setupScoreLabel()   // 追加
         setupItemScoreLabel()   // 追加
+        
     }
     
     func setupGround() {
@@ -113,6 +114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let itemTexture = SKTexture(imageNamed: "item")
         itemTexture.filteringMode = .nearest
         
+       
         // 移動する距離を計算
         let movingDistance = CGFloat(self.frame.size.width + itemTexture.size().width)
         
@@ -156,8 +158,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             under.position = CGPoint(x: 0, y: under_item_y)
             
             // スプライトに物理演算を設定する
-            under.physicsBody = SKPhysicsBody(rectangleOf: itemTexture.size())    // ←追加
-            under.physicsBody?.categoryBitMask = self.itemCategory    // ←追加
+//            under.physicsBody = SKPhysicsBody(rectangleOf: itemTexture.size())    // ←追加
+//            under.physicsBody?.categoryBitMask = self.itemCategory    // ←追加
             
             // 衝突の時に固定
             under.physicsBody?.isDynamic = false    // ←追加
@@ -169,10 +171,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let upper = SKSpriteNode(texture: itemTexture)
             upper.position = CGPoint(x: 0, y: under_item_y + itemTexture.size().height + slit_length)
             
-            // スプライトに物理演算を設定する
-            under.physicsBody = SKPhysicsBody(rectangleOf: itemTexture.size())    // ←追加
-            under.physicsBody?.categoryBitMask = self.itemCategory    // ←追加
-            
+           
             
             item.addChild(upper)
             
@@ -192,7 +191,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         })
         
         // 次の壁作成までの時間待ちのアクションを作成
-        let waitAnimation = SKAction.wait(forDuration: 2)
+        //let time = Int.random(in: 0 ... 10)
+        let waitAnimation = SKAction.wait(forDuration: 2.5)
         
         // 壁を作成->時間待ち->壁を作成を無限に繰り返すアクションを作成
         let repeatForeverAnimation = SKAction.repeatForever(SKAction.sequence([createItemAnimation, waitAnimation]))
@@ -389,7 +389,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if (contact.bodyA.categoryBitMask & itemCategory) == itemCategory || (contact.bodyB.categoryBitMask & itemCategory) == itemCategory {
             print("ItemGet")
             itemScore += 1
-            itemNode.removeAllChildren()
+            if ((contact.bodyA.categoryBitMask & itemCategory) == itemCategory ){
+            contact.bodyA.node?.removeFromParent()
+            } else if((contact.bodyB.categoryBitMask & itemCategory) == itemCategory){
+                contact.bodyB.node?.removeFromParent()
+            }
+
             //音を鳴らす
             
             
