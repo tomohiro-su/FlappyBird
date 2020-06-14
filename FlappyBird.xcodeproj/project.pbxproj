@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C6988182495A06300400544 /* pa1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C6988172495A06300400544 /* pa1.mp3 */; };
 		2C76B953249077BD00DC2BBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C76B952249077BD00DC2BBA /* AppDelegate.swift */; };
 		2C76B955249077BD00DC2BBA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C76B954249077BD00DC2BBA /* SceneDelegate.swift */; };
 		2C76B957249077BD00DC2BBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C76B956249077BD00DC2BBA /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C6988172495A06300400544 /* pa1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pa1.mp3; sourceTree = "<group>"; };
 		2C76B94F249077BD00DC2BBA /* FlappyBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlappyBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C76B952249077BD00DC2BBA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C76B954249077BD00DC2BBA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				2C76B954249077BD00DC2BBA /* SceneDelegate.swift */,
 				2C76B956249077BD00DC2BBA /* ViewController.swift */,
 				2C76B958249077BD00DC2BBA /* Main.storyboard */,
+				2C6988172495A06300400544 /* pa1.mp3 */,
 				2C76B95B249077BF00DC2BBA /* Assets.xcassets */,
 				2C76B95D249077BF00DC2BBA /* LaunchScreen.storyboard */,
 				2C76B960249077BF00DC2BBA /* Info.plist */,
@@ -131,6 +134,7 @@
 				2C76B95F249077BF00DC2BBA /* LaunchScreen.storyboard in Resources */,
 				2C76B95C249077BF00DC2BBA /* Assets.xcassets in Resources */,
 				2C76B95A249077BD00DC2BBA /* Main.storyboard in Resources */,
+				2C6988182495A06300400544 /* pa1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
