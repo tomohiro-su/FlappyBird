@@ -287,6 +287,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             // 衝突の時に動かないように設定する
             upper.physicsBody?.isDynamic = false
+        
             wall.addChild(upper)
             
             // スコアアップ用のノード --- ここから ---
@@ -337,9 +338,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // 衝突のカテゴリー設定
         bird.physicsBody?.categoryBitMask = birdCategory    // ←追加
         bird.physicsBody?.collisionBitMask = groundCategory | wallCategory    // ←追加
-        bird.physicsBody?.contactTestBitMask = groundCategory | wallCategory    // ←追加
-        bird.physicsBody?.contactTestBitMask = groundCategory | itemCategory    // ←追加
-        
+        bird.physicsBody?.contactTestBitMask = groundCategory | wallCategory | itemCategory
+
+        // アニメーションを設定
         bird.run(flap)
         
         // スプライトを追加する
@@ -366,13 +367,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         
-        if (contact.bodyA.categoryBitMask & scoreCategory) == scoreCategory || (contact.bodyB.categoryBitMask & scoreCategory) == scoreCategory {
-            // スコア用の物体と衝突した
-            print("ScoreUp")
-            score += 1
-            
-            scoreLabelNode.text = "Score:\(score)"    // ←追加
-        } else if (contact.bodyA.categoryBitMask & itemCategory) == itemCategory || (contact.bodyB.categoryBitMask & itemCategory) == itemCategory {
+       
+        if (contact.bodyA.categoryBitMask & itemCategory) == itemCategory || (contact.bodyB.categoryBitMask & itemCategory) == itemCategory {
             print("ItemGet")
             itemScore += 1
             itemScoreLabelNode.text = "itemScore:\(itemScore)"    // ←追加
@@ -385,6 +381,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let mySoundAction: SKAction = SKAction.playSoundFileNamed("pa1.mp3", waitForCompletion: true)
             // 再生アクション.
             self.run(mySoundAction)
+            
+        } else if (contact.bodyA.categoryBitMask & scoreCategory) == scoreCategory || (contact.bodyB.categoryBitMask & scoreCategory) == scoreCategory {
+                       // スコア用の物体と衝突した
+                       print("ScoreUp")
+                       score += 1
+                       
+                       scoreLabelNode.text = "Score:\(score)"    // ←追加
+            
             
         } else {
             // 壁か地面と衝突した
@@ -401,8 +405,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             // スクロールを停止させる
             scrollNode.speed = 0
-            scoreLabelNode.text = "Score:\(score)"    // ←追加
-            bird.physicsBody?.collisionBitMask = groundCategory
+          //  scoreLabelNode.text = "Score:\(score)"    // ←追加
+            bird.physicsBody?.collisionBitMask = groundCategory | wallCategory
             
             let roll = SKAction.rotate(byAngle: CGFloat(Double.pi) * CGFloat(bird.position.y) * 0.01, duration:1)
             bird.run(roll, completion:{
